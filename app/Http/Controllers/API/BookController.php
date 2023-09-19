@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends BaseController
 {
@@ -57,6 +58,7 @@ class BookController extends BaseController
                     return intval($value);
             }, $request->genre));
         }
+        Log::debug('Книга обновлена' . $book->id);
         return $this->sendResponse($book);
     }
     public function deleteBook(Request $request, $id)
